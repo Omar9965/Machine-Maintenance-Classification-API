@@ -79,7 +79,7 @@ Machine Predictive Maintenance Classification/
 
 ```bash
 git clone https://github.com/Omar9965/Machine-Maintenance-Classification-API
-cd "Machine Predictive Maintenance Classification"
+cd "Machine-Maintenance-Classification-API"
 ```
 
 ### 2️⃣ (Recommended) Create and activate a virtual environment:
