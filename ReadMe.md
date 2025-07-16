@@ -73,7 +73,7 @@ Machine Predictive Maintenance Classification/
 
 1️⃣ Clone the repository:
 \`\`\`bash
-git clone <repository_url>
+git clone https://github.com/Omar9965/Machine-Predictive-Maintenance-Classification-API
 cd Machine Predictive Maintenance Classification
 \`\`\`
 
