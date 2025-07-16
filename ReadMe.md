@@ -30,8 +30,7 @@ The pipeline includes:
 ✅ Preprocessing pipelines (scaling, encoding)  
 ✅ Tuned thresholds for classification  
 ✅ Model inference API  
-✅ Pydantic validation with type and value constraints  
-✅ CORS for frontend integration  
+✅ Pydantic validation with type and value constraints   
 
 ---
 
