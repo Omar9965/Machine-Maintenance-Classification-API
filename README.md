@@ -187,4 +187,4 @@ Content-Type: application/json
 
 ---
 
-# Machine-Predictive-Maintenance-Classification-AP
+# Machine Predictive Maintenance Classification API
