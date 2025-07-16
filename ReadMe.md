@@ -22,7 +22,7 @@ A production-ready **FastAPI service** for **predicting machine failure** using 
 
 ## 🚀 Project Overview
 
-Predictive maintenance reduces unplanned downtime by anticipating failures before they happen. This project builds a **FastAPI REST API** using **LightGBM (or XGBoost initially)** models trained on engineered sensor and operational data for **binary machine failure prediction**.
+Predictive maintenance reduces unplanned downtime by anticipating failures before they happen. This project builds a **FastAPI REST API** using XGBoost models trained on engineered sensor and operational data for **binary machine failure prediction**.
 
 The pipeline includes:
 
@@ -137,7 +137,7 @@ Accepts **JSON data** matching the \`MachineData\` schema, performs preprocessin
 - Saved and loaded using \`joblib\` for consistency across training and inference.
 
 ✅ **Model**:
-- Initially used XGBoost, later switched to LightGBM for speed.
+- Initially used XGBoost.
 - Tuned \`scale_pos_weight\` to handle class imbalance.
 - Tuned classification threshold for better F1 performance.
 
