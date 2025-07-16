@@ -1,163 +1,171 @@
-
 # 🛠️ Machine Predictive Maintenance Classification API
 
-A production-ready **FastAPI service** for **predicting machine failure** using classification models with engineered features, robust preprocessing, and tuned thresholds, ensuring reliable predictive maintenance decision support.
+A **FastAPI service** for **predicting machine failure** using classification models, feature engineering, and robust preprocessing for reliable predictive maintenance decision support.
 
 ---
 
 ## 📌 Table of Contents
 
-- [Project Overview](#project-overview)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [Technical Details](#technical-details)
-- [Example Request](#example-request)
-- [Notes](#notes)
-- [Future Improvements](#future-improvements)
+* Project Overview
+* Features
+* Project Structure
+* Installation
+* Usage
+* API Endpoints
+* Example Request
+* Notes
+* Future Improvements
 
 ---
 
 ## 🚀 Project Overview
 
-Predictive maintenance reduces unplanned downtime by anticipating failures before they happen. This project builds a **FastAPI REST API** using **LightGBM (or XGBoost initially)** models trained on engineered sensor and operational data for **binary machine failure prediction**.
+Predictive maintenance reduces unplanned downtime by anticipating failures before they happen. This API uses **FastAPI** and **XGBoost** to predict machine failure from sensor and operational data.
 
-The pipeline includes:
-
-✅ Feature engineering  
-✅ Preprocessing pipelines (scaling, encoding)  
-✅ Tuned thresholds for classification  
-✅ Model inference API  
-✅ Pydantic validation with type and value constraints  
-✅ CORS for frontend integration  
+Key components:
+✅ Feature engineering
+✅ Preprocessing pipelines (scaling, encoding)
+✅ Tuned thresholds for classification
+✅ Real-time API for model inference
+✅ Pydantic validation of requests
+✅ Docker-ready for consistent deployment
 
 ---
 
 ## ✨ Features
 
-- **Clean ML pipeline**: Scikit-learn pipelines, feature engineering, and preprocessing stored via `joblib`.
-- **Model threshold tuning** using precision-recall curves for optimal F1 performance.
-- **FastAPI deployment** with real-time JSON input prediction.
-- **Validation** using Pydantic with constraints on sensor values.
-- **Structured project** for clarity, modularity, and scalability.
-- **Docker-ready architecture** (optional for your next phase).
+* **Structured pipeline** for robust preprocessing and consistent feature engineering.
+* **Pydantic validation** ensuring clean, typed, constrained input.
+* **FastAPI REST endpoints** for real-time predictions.
+* **Dockerized** for easy deployment on any environment.
 
 ---
 
 ## 🗂️ Project Structure
 
-\`\`\`
+```
 Machine Predictive Maintenance Classification/
 │
-├── main.py                   # FastAPI entry point
-├── requirements.txt          # Dependencies
-├── .env                      # Environment variables
+├── Data/
+│   └── ai4i2020.csv             # Dataset
 │
-├── models/                   # Saved preprocessor and model
-│   ├── preprocessor.pkl
-│   └── xgb_model.pkl
+├── Models/
+│   ├── preprocessor.pkl         # Preprocessing pipeline
+│   └── xgb_model.pkl            # Trained XGBoost model
+│
+├── Notebook/
+│   └── model.ipynb              # EDA/Training notebook
 │
 ├── utils/
-│   ├── config.py             # Loads models and config
-│   ├── inference.py          # Prediction function
-│   ├── feature_engineering.py # add_engineered_features function
-│   └── MachineData.py        # Pydantic schema for validation
+│   ├── config.py                # Load models and config
+│   ├── inference.py             # Prediction logic
+│   ├── feature_engineering.py   # Adds engineered features
+│   └── MachineData.py           # Pydantic schema for validation
 │
-└── README.md                 # Project documentation
-\`\`\`
+├── main.py                      # FastAPI entry point
+├── requirements.txt             # Python dependencies
+├── docker-compose.yaml          # Docker orchestration
+├── Dockerfile                   # Docker build instructions
+├── .env                         # Environment variables (local)
+├── env.example                  # Example environment file
+└── README.md                    # Project documentation
+```
 
 ---
 
 ## ⚙️ Installation
 
-1️⃣ Clone the repository:
-\`\`\`bash
-git clone <repository_url>
-cd Machine Predictive Maintenance Classification
-\`\`\`
+### 1️⃣ Clone the repository:
 
-2️⃣ (Recommended) Create a virtual environment:
-\`\`\`bash
+```bash
+git clone https://github.com/Omar9965/Machine-Predictive-Maintenance-Classification-API.git
+cd "Machine Predictive Maintenance Classification"
+```
+
+### 2️⃣ (Recommended) Create and activate a virtual environment:
+
+```bash
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-\`\`\`
+# On Windows:
+venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+```
 
-3️⃣ Install dependencies:
-\`\`\`bash
+### 3️⃣ Install dependencies:
+
+```bash
 pip install -r requirements.txt
-\`\`\`
+```
 
-4️⃣ Add a \`.env\` file:
-\`\`\`env
-APP_NAME=Machine Predictive Maintenance Classification
-VERSION=1.0
-\`\`\`
+### 4️⃣ Add environment variables:
+
+Copy `env.example` to `.env` and edit if needed:
+
+```bash
+cp env.example .env
+```
 
 ---
 
 ## ▶️ Usage
 
-Run the FastAPI server:
-\`\`\`bash
+### 🚀 **Running without Docker:**
+
+```bash
 uvicorn main:app --reload
-\`\`\`
-Access the interactive Swagger UI:
-\`\`\`
-http://127.0.0.1:8000/docs
-\`\`\`
-Or the ReDoc UI:
-\`\`\`
-http://127.0.0.1:8000/redoc
-\`\`\`
+```
+
+Access the API:
+
+* Swagger UI: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+* ReDoc: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
+
+---
+
+### 🚀 **Running with Docker (Recommended for consistency):**
+
+1️⃣ **Build the image:**
+
+```bash
+docker-compose build
+```
+
+2️⃣ **Run the containers:**
+
+```bash
+docker-compose up
+```
+
+Access:
+
+* Swagger UI: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 ---
 
 ## 📡 API Endpoints
 
-### 1️⃣ \`GET /\`
-Health check to confirm the API is running.
+### 1️⃣ `GET /`
 
-### 2️⃣ \`POST /predict/xgboost\`
-Accepts **JSON data** matching the \`MachineData\` schema, performs preprocessing, engineered feature addition, and returns:
-- \`Failure_prediction\`: Boolean indicating if the machine is predicted to fail.
-- \`Failure_probability\`: Probability of failure.
+Health check to confirm API is live.
 
----
+### 2️⃣ `POST /predict/xgboost`
 
-## 🛠️ Technical Details
+Accepts JSON matching the `MachineData` schema, applies preprocessing and feature engineering, and returns:
 
-✅ **Feature Engineering**:
-- Handled in \`add_engineered_features\` inside \`feature_engineering.py\`.
-- Called during inference to maintain consistency with training.
-
-✅ **Preprocessing**:
-- Scaling, encoding, and feature selection using scikit-learn pipeline.
-- Saved and loaded using \`joblib\` for consistency across training and inference.
-
-✅ **Model**:
-- Initially used XGBoost, later switched to LightGBM for speed.
-- Tuned \`scale_pos_weight\` to handle class imbalance.
-- Tuned classification threshold for better F1 performance.
-
-✅ **Pydantic Validation**:
-- Enforces:
-    - Type: L, M, or H
-    - Temperature, torque, tool wear ranges to prevent invalid inputs.
-
-✅ **Error Handling**:
-- Clear errors when input keys mismatch.
-- Detects missing features during pipeline transformation.
+* `Failure_prediction`: True/False
+* `Failure_probability`: Float (probability of failure)
 
 ---
 
 ## 📝 Example Request
 
 ### Request:
-\`\`\`json
+
+```json
 POST http://127.0.0.1:8000/predict/xgboost
 Content-Type: application/json
+
 {
     "Type": "M",
     "Air temperature [K]": 300.0,
@@ -166,13 +174,16 @@ Content-Type: application/json
     "Torque [Nm]": 40.0,
     "Tool wear [min]": 10.0
 }
-\`\`\`
+```
 
 ### Response:
-\`\`\`json
+
+```json
 {
-  "Failure_prediction": false,
-  "Failure_probability": 0.123456
+    "Failure_prediction": false,
+    "Failure_probability": 0.123456
 }
-\`\`\`
+```
+
+---
 
