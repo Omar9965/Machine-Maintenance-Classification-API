@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}{{ app_name }} — Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">AI-Powered Predictive Maintenance</div>
+        <h1 class="hero-title">
+            Predict Machine Failures
+            <span class="gradient-text">Before They Happen</span>
+        </h1>
+        <p class="hero-subtitle">
+            Leverage advanced XGBoost classification to anticipate equipment failures
+            from real-time sensor data — reducing downtime, cutting costs, and
+            keeping operations running smoothly.
+        </p>
+        <div class="hero-actions">
+            <a href="/predict" class="btn btn-primary">
+                <span>Run Prediction</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+            <a href="/docs" class="btn btn-secondary" target="_blank">API Documentation</a>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <h2 class="section-title">How It Works</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">📡</div>
+            <h3>Sensor Input</h3>
+            <p>Provide machine sensor readings — temperature, rotational speed, torque, and tool wear data.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🧪</div>
+            <h3>Feature Engineering</h3>
+            <p>14 derived features are computed including stress indices, thermal ratios, and operational flags.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h3>ML Inference</h3>
+            <p>A tuned XGBoost classifier evaluates failure probability with a precision-optimized threshold.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Actionable Results</h3>
+            <p>Get a clear failure prediction with a confidence score to guide maintenance decisions.</p>
+        </div>
+    </div>
+</section>
+
+<section class="api-section">
+    <h2 class="section-title">REST API</h2>
+    <div class="api-card">
+        <div class="api-endpoint">
+            <span class="method-badge post">POST</span>
+            <code>/api/v1/predict/xgboost</code>
+        </div>
+        <div class="code-block">
+            <pre><code>{
+    "Type": "M",
+    "Air temperature [K]": 300.0,
+    "Process temperature [K]": 310.0,
+    "Rotational speed [rpm]": 1500.0,
+    "Torque [Nm]": 40.0,
+    "Tool wear [min]": 10.0
+}</code></pre>
+        </div>
+    </div>
+</section>
+{% endblock %}
