@@ -16,7 +16,6 @@ A **full-stack FastAPI application** for **predicting machine failure** using XG
 - [Web Pages](#-web-pages)
 - [Example Request](#-example-request)
 - [Testing](#-testing)
-- [Future Improvements](#-future-improvements)
 
 ---
 
