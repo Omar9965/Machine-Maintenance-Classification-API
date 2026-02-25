@@ -1,6 +1,6 @@
 import pandas as pd
-from .MachineData import MachineData
 from .feature_engineering import add_engineered_features
+from app.models import MachineData
 
 def predict_new(data: MachineData, preprocessor, model, best_threshold: float) -> dict:
     """

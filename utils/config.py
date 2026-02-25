@@ -16,4 +16,4 @@ MODELS_FOLDER_PATH = os.path.join(BASE_DIR, "Models")
 # Models
 preprocessor = joblib.load(os.path.join(MODELS_FOLDER_PATH, 'preprocessor.pkl'))
 xgboost_model = joblib.load(os.path.join(MODELS_FOLDER_PATH, 'xgb_model.pkl'))
-best_threshold = 0.8122999
+best_threshold = 0.8966
